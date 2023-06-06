@@ -10,7 +10,16 @@ public class CourierMethods {
 
     private int courierId;
 
-@Step("Создание курьера")
+
+    public CourierMethods(int courierId) {
+        this.courierId = courierId;
+    }
+
+    public CourierMethods() {
+
+    }
+
+    @Step("Создание курьера")
     public ValidatableResponse create(Courier courier) {
         return given()
                 .header("Content-type", "application/json")

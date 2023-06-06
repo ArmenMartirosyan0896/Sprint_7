@@ -6,7 +6,6 @@ import io.restassured.response.ValidatableResponse;
 import model.Courier;
 import model.CourierCredential;
 import model.CourierMethods;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,9 +23,10 @@ public class CourierLoginTest {
         courierMethods = new CourierMethods();
     }
 
+
     @Test
     @DisplayName("Позитивный тест на авторизацию")
-    public void CourierLigin(){
+    public void CourierLogin(){
         courierMethods.create(courier);
         courierMethods.login(CourierCredential.from(courier))
                 .statusCode(200)
@@ -64,8 +64,5 @@ public class CourierLoginTest {
                 .body("message", equalTo("Недостаточно данных для входа"));
     }
 
-    @After
-    public void deleteCouriers(){
-        courierMethods.delete(id);
-    }
+
 }

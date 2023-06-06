@@ -6,6 +6,7 @@ import io.restassured.RestAssured;
 import model.Courier;
 import model.CourierCredential;
 import model.CourierMethods;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -29,7 +30,7 @@ public class CourierCreateTest {
                 .and()
                 .body("ok", equalTo(true));
         id = courierMethods.getId(CourierCredential.from(courier));
-        courierMethods.delete(id);
+        /*courierMethods.delete(id);*/
     }
     @Test
     @DisplayName("Ошибка при создании двух курьеров с одинаковым логопасом")
@@ -39,9 +40,8 @@ public class CourierCreateTest {
                 .statusCode(409)
                 .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
         id = courierMethods.getId(CourierCredential.from(courier));
-        courierMethods.delete(id);
+        /*courierMethods.delete(id);*/
     }
-
     @Test
     @DisplayName("Ошибка при создании курьеров с одинаковым логином")
     public void addCourierWithBookedLogin() {
@@ -57,9 +57,8 @@ public class CourierCreateTest {
                 .body("message", equalTo("Этот логин уже используется. Попробуйте другой."));
 
         int id = courierMethods.getId(CourierCredential.from(courier));
-        courierMethods.delete(id);
+        /*courierMethods.delete(id);*/
     }
-
     @Test
     @DisplayName("Ошибка при создании курьера без логина")
     public void createCourierWithoutLogin(){
@@ -76,5 +75,9 @@ public class CourierCreateTest {
         courierMethods.create(courier)
                 .statusCode(400)
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
+    }
+    @After
+    public void cleanCourier() {
+        courierMethods.delete(id);
     }
 }
