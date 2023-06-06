@@ -1,10 +1,6 @@
 package model;
 import io.restassured.response.ValidatableResponse;
-
 import static io.restassured.RestAssured.given;
-
-
-
 
 public class CourierMethods {
     private static String CREATE_PATH = "/api/v1/courier";
@@ -12,7 +8,6 @@ public class CourierMethods {
     private static String DELETE_PATH = "/api/v1/courier/";
 
     private int courierId;
-
 
     public ValidatableResponse create(Courier courier) {
         return given()
@@ -22,12 +17,7 @@ public class CourierMethods {
                 .when()
                 .post(CREATE_PATH)
                 .then();
-
     }
-
-
-
-
 
     public ValidatableResponse login(CourierCredential credential) {
         return given()
@@ -39,15 +29,11 @@ public class CourierMethods {
                 .then();
     }
 
-
-
     public int getId (CourierCredential credential){
         return login(credential)
                 .extract()
                 .path("id");
     }
-
-
 
     public void delete(int courierId) {
         given()
@@ -56,5 +42,4 @@ public class CourierMethods {
                 .delete(DELETE_PATH + courierId)
                 .then().log().all();
     }
-
 }

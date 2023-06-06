@@ -12,8 +12,6 @@ public class CourierData {
         return new Courier("", "aue-chelyaba", "Найтли");
     }
 
-
-
     public static Courier courierWirhoutPassword(){
         return new Courier("lovenwantity", "", "Уоттакуот");
     }

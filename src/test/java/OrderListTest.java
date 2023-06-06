@@ -8,7 +8,6 @@ import org.junit.Test;
 public class OrderListTest {
     private OrderMethods orderMethods;
 
-
     @Before
     public void setUp() {
         RestAssured.baseURI = BaseURI.baseURI;
@@ -22,6 +21,5 @@ public class OrderListTest {
                 .statusCode(200)
                 .extract()
                 .path("orders");
-
     }
 }

@@ -8,10 +8,7 @@ import model.CourierCredential;
 import model.CourierMethods;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.hamcrest.CoreMatchers.equalTo;
-
-
 
 public class CourierCreateTest {
     private Courier courier;
@@ -22,7 +19,6 @@ public class CourierCreateTest {
         RestAssured.baseURI = BaseURI.baseURI;
         courier = CourierData.defaultCourier();
         courierMethods = new CourierMethods();
-
     }
 
     @Test
@@ -64,12 +60,6 @@ public class CourierCreateTest {
         courierMethods.delete(id);
     }
 
-
-
-
-
-
-
     @Test
     @DisplayName("Ошибка при создании курьера без логина")
     public void createCourierWithoutLogin(){
@@ -77,7 +67,6 @@ public class CourierCreateTest {
         courierMethods.create(courier)
                 .statusCode(400)
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
-
     }
 
     @Test
@@ -87,10 +76,5 @@ public class CourierCreateTest {
         courierMethods.create(courier)
                 .statusCode(400)
                 .body("message", equalTo("Недостаточно данных для создания учетной записи"));
-
     }
-
-
-
-
 }
